@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Compilado
+out/
+dist/
+
+# VSCode
+.vscode-test/
+*.vsix
+
+# Sistema
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
