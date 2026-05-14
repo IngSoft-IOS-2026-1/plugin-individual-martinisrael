@@ -10,7 +10,7 @@ dist/
 *.vsix
 
 # Sistema
-.DS_Store
+*.DS_Store
 
 # Logs
 *.log
