@@ -1,71 +1,57 @@
-# miranda-preludio README
+# miranda-preludio
 
-This is the README for your extension "miranda-preludio". After writing up a brief description, we recommend including the following sections.
+Extensión de VS Code que mejora la experiencia al escribir código en **Miranda**, enfocándose en las funciones del Preludio estándar (la librería incorporada del lenguaje).
 
-## Features
+## Funcionalidades
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Resaltado de sintaxis
 
-For example if there is an image subfolder under your extension project workspace:
+Los archivos `.m` se colorean automáticamente. Las funciones del Preludio (`map`, `filter`, `sort`, `hd`, `foldl`, etc.) aparecen en un color distinto al del código definido por el usuario, lo que permite distinguir de un vistazo qué pertenece a la librería estándar y qué es propio del programa.
 
-\!\[feature X\]\(images/feature-x.png\)
+![Resaltado de sintaxis y hover](images/hover.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Autocompletado
 
-## Requirements
+Al empezar a escribir el nombre de cualquier función del Preludio, IntelliSense sugiere las coincidencias con su firma de tipo. Al seleccionar una sugerencia, se despliega la documentación completa con descripción y ejemplos.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![Autocompletado con documentación](images/autocompletado.png)
 
-## Extension Settings
+### Hover con documentación
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Al posicionar el cursor sobre una función del Preludio aparece un tooltip con:
+- La firma de tipo en notación Miranda
+- Una descripción de lo que hace la función
+- Ejemplos concretos de uso con su resultado
 
-For example:
+## Funciones cubiertas
 
-This extension contributes the following settings:
+La extensión incluye documentación para más de 80 funciones del Preludio estándar de Miranda, organizadas en las siguientes categorías:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+| Categoría | Ejemplos |
+|---|---|
+| Listas | `hd`, `tl`, `map`, `filter`, `foldl`, `foldr`, `sort`, `zip2`, `take`, `drop` |
+| Aritmética | `abs`, `sqrt`, `even`, `odd`, `gcd`, `lcm`, `entier`, `sin`, `cos`, `pi` |
+| Caracteres y cadenas | `code`, `decode`, `digit`, `letter`, `shownum`, `numval`, `lines`, `spaces` |
+| Combinadores | `id`, `const`, `converse`, `until`, `limit`, `force`, `error` |
+| Tuplas | `fst`, `snd` |
+| Sistema | `read`, `getenv`, `system` |
 
-## Known Issues
+## Uso
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+La extensión se activa automáticamente al abrir cualquier archivo con extensión `.m`.
 
-## Release Notes
+- **Autocompletado:** empezá a escribir el nombre de una función — las sugerencias aparecen solas. Si no, presioná `Ctrl+Space` (`Cmd+Space` en Mac).
+- **Hover:** posicioná el cursor sobre cualquier función del Preludio y esperá un momento.
+- **Comentarios:** el atajo de comentar línea inserta `||` (la sintaxis de Miranda).
+- **Brackets:** `[`, `(` y `"` se cierran automáticamente.
 
-Users appreciate release notes as you update your extension.
+## Requisitos
 
-### 1.0.0
+- Visual Studio Code 1.118.0 o superior
+- Archivos Miranda con extensión `.m`
 
-Initial release of ...
+## Notas de versión
 
-### 1.0.1
+### 0.0.1
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Versión inicial. Incluye resaltado de sintaxis, autocompletado y hover documentation para todas las funciones del Preludio estándar de Miranda.
