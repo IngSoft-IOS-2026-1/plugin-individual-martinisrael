@@ -7,11 +7,26 @@
     "vscode": "^1.118.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "miranda",
+        "aliases": ["Miranda", "miranda"],
+        "extensions": [".m"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "miranda",
+        "scopeName": "source.miranda",
+        "path": "./syntaxes/miranda.tmLanguage.json"
+      }
+    ],
     "commands": [
       {
         "command": "miranda-preludio.helloWorld",

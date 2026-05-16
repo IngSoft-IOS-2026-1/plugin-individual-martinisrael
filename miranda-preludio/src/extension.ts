@@ -1,26 +1,53 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { prelude, lookupEntry } from './prelude';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "miranda-preludio" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('miranda-preludio.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from miranda-preludio!');
-	});
-
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(
+        registerCompletion(),
+        registerHover()
+    );
 }
 
-// This method is called when your extension is deactivated
+function registerCompletion(): vscode.Disposable {
+    const items = prelude.map(entry => {
+        const item = new vscode.CompletionItem(entry.name, vscode.CompletionItemKind.Function);
+        item.detail = entry.signature;
+        item.documentation = buildDoc(entry);
+        return item;
+    });
+
+    return vscode.languages.registerCompletionItemProvider(
+        { language: 'miranda' },
+        { provideCompletionItems: () => items }
+    );
+}
+
+function registerHover(): vscode.Disposable {
+    return vscode.languages.registerHoverProvider(
+        { language: 'miranda' },
+        {
+            provideHover(document, position) {
+                const word = document.getText(
+                    document.getWordRangeAtPosition(position, /[a-zA-Z][a-zA-Z0-9_']*/)
+                );
+                const entry = lookupEntry(word);
+                if (!entry) { return; }
+                return new vscode.Hover(buildDoc(entry));
+            }
+        }
+    );
+}
+
+function buildDoc(entry: ReturnType<typeof lookupEntry>): vscode.MarkdownString {
+    if (!entry) { return new vscode.MarkdownString(); }
+    const md = new vscode.MarkdownString();
+    md.appendCodeblock(entry.signature, 'miranda');
+    md.appendMarkdown(`\n${entry.description}`);
+    if (entry.examples && entry.examples.length > 0) {
+        md.appendMarkdown('\n\n**Ejemplos:**');
+        md.appendCodeblock(entry.examples.join('\n'), 'miranda');
+    }
+    return md;
+}
+
 export function deactivate() {}

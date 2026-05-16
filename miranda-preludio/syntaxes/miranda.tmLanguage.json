@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Miranda",
+  "scopeName": "source.miranda",
+  "fileTypes": ["m"],
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#string" },
+    { "include": "#char" },
+    { "include": "#number" },
+    { "include": "#keyword" },
+    { "include": "#type-operator" },
+    { "include": "#operator" },
+    { "include": "#prelude-function" },
+    { "include": "#type-name" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.double-pipe.miranda",
+      "match": "\\|\\|.*$"
+    },
+    "string": {
+      "name": "string.quoted.double.miranda",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "name": "constant.character.escape.miranda", "match": "\\\\." }
+      ]
+    },
+    "char": {
+      "name": "string.quoted.single.miranda",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        { "name": "constant.character.escape.miranda", "match": "\\\\." }
+      ]
+    },
+    "number": {
+      "name": "constant.numeric.miranda",
+      "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+    },
+    "keyword": {
+      "name": "keyword.control.miranda",
+      "match": "\\b(if|then|else|where|let|in|otherwise|type|abstype|with|show|readvals|True|False)\\b"
+    },
+    "type-operator": {
+      "patterns": [
+        {
+          "name": "keyword.operator.type.miranda",
+          "match": "::"
+        },
+        {
+          "name": "keyword.operator.arrow.miranda",
+          "match": "->"
+        }
+      ]
+    },
+    "operator": {
+      "name": "keyword.operator.miranda",
+      "match": "[+\\-*/<>=&|!@#$%^~?\\\\]+"
+    },
+    "prelude-function": {
+      "name": "support.function.prelude.miranda",
+      "match": "\\b(hd|tl|reverse|concat|map2?|filter|foldl1?|foldr1?|scan|take(?:while)?|drop(?:while)?|zip[2-6]?|transpose|iterate|repeat|rep|postfix|member|index|mkset|sort|merge|last|init|sum|product|max2?|min2?|and|or|abs|gcd|neg|subtract|lcm|even|odd|integer|entier|sqrt|exp|log(?:10)?|sin|cos|tan|arctan|pi|hugenum|tinynum|code|decode|digit|letter|spaces|lay|layn|lines|[clr]justify|numval|shownum|showfloat|showscaled|show|id|const|converse|until|limit|seq|force|undef|error|read|filemode|getenv|system|fst|snd)\\b"
+    },
+    "type-name": {
+      "name": "entity.name.type.miranda",
+      "match": "\\b[A-Z][a-zA-Z0-9_']*\\b"
+    }
+  }
+}
