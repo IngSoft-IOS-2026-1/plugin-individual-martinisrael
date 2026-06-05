@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import type { DocLocale } from './prelude.cache';
+import { uiStrings } from './ui-strings';
 
 export function getDocumentationLocale(): DocLocale {
     const override = vscode.workspace
@@ -11,7 +12,4 @@ export function getDocumentationLocale(): DocLocale {
     return vscode.env.language.startsWith('es') ? 'es' : 'en';
 }
 
-export const uiStrings: Record<DocLocale, { examplesLabel: string }> = {
-    en: { examplesLabel: 'Examples' },
-    es: { examplesLabel: 'Ejemplos' },
-};
+export { uiStrings } from './ui-strings';

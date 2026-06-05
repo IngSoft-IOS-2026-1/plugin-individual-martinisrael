@@ -1,7 +1,14 @@
 import * as vscode from 'vscode';
 import { getPrelude, lookupEntry, invalidatePreludeCache } from './prelude';
-import { getDocumentationLocale, uiStrings } from './locale';
-import type { PreludeEntry } from './prelude';
+import { getDocumentationLocale } from './locale';
+import { buildCompletionItems, provideHover } from './extension.providers';
+
+const vscodeApi = {
+    MarkdownString: vscode.MarkdownString,
+    CompletionItem: vscode.CompletionItem,
+    CompletionItemKind: vscode.CompletionItemKind,
+    Hover: vscode.Hover,
+};
 
 export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
@@ -21,12 +28,7 @@ function registerCompletion(): vscode.Disposable {
         {
             provideCompletionItems: () => {
                 const locale = getDocumentationLocale();
-                return getPrelude().map(entry => {
-                    const item = new vscode.CompletionItem(entry.name, vscode.CompletionItemKind.Function);
-                    item.detail = entry.signature;
-                    item.documentation = buildDoc(entry, locale);
-                    return item;
-                });
+                return buildCompletionItems(vscodeApi, getPrelude(), locale);
             },
         }
     );
@@ -37,30 +39,16 @@ function registerHover(): vscode.Disposable {
         { language: 'miranda' },
         {
             provideHover(document, position) {
-                const range = document.getWordRangeAtPosition(position, /[a-zA-Z][a-zA-Z0-9_']*/);
-                if (!range) {
-                    return;
-                }
-                const word = document.getText(range);
-                const entry = lookupEntry(word);
-                if (!entry) {
-                    return;
-                }
-                return new vscode.Hover(buildDoc(entry, getDocumentationLocale()));
+                return provideHover(
+                    vscodeApi,
+                    document,
+                    position,
+                    lookupEntry,
+                    getDocumentationLocale()
+                );
             },
         }
     );
-}
-
-function buildDoc(entry: PreludeEntry, locale: ReturnType<typeof getDocumentationLocale>): vscode.MarkdownString {
-    const md = new vscode.MarkdownString();
-    md.appendCodeblock(entry.signature, 'miranda');
-    md.appendMarkdown(`\n${entry.description}`);
-    if (entry.examples && entry.examples.length > 0) {
-        md.appendMarkdown(`\n\n**${uiStrings[locale].examplesLabel}:**`);
-        md.appendCodeblock(entry.examples.join('\n'), 'miranda');
-    }
-    return md;
 }
 
 export function deactivate() {}
