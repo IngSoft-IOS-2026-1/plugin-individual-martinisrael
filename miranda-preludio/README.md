@@ -2,6 +2,12 @@
 
 VS Code extension that improves the experience of writing **Miranda** code, with a focus on the standard Prelude (the language's built-in library).
 
+## Install
+
+[**Install from the VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio)
+
+Or search **Miranda Prelude** in the Extensions view. Complements other Miranda extensions (e.g. Miranda LSP) with bilingual Prelude hover docs, highlighting, and autocompletion.
+
 ## Features
 
 ### Syntax highlighting
@@ -68,6 +74,12 @@ Initial release. Includes syntax highlighting, autocompletion, and bilingual hov
 # Miranda Prelude
 
 Extensión de VS Code que mejora la experiencia al escribir código en **Miranda**, enfocándose en las funciones del Preludio estándar (la librería incorporada del lenguaje).
+
+## Instalación
+
+[**Instalá desde el VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio)
+
+O buscá **Miranda Prelude** en la vista de Extensiones. Complementa otras extensiones Miranda (p. ej. Miranda LSP) con documentación bilingüe del Preludio, resaltado y autocompletado.
 
 ## Funcionalidades
 

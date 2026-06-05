@@ -3,6 +3,16 @@
   "displayName": "Miranda Prelude",
   "description": "%extension.description%",
   "version": "0.0.1",
+  "publisher": "martinisrael",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael"
+  },
+  "bugs": {
+    "url": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/issues"
+  },
+  "homepage": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael#readme",
   "engines": {
     "vscode": "^1.118.0"
   },
