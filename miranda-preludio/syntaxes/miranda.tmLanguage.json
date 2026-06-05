@@ -60,8 +60,16 @@
       "match": "[+\\-*/<>=&|!@#$%^~?\\\\]+"
     },
     "prelude-function": {
-      "name": "support.function.prelude.miranda",
-      "match": "\\b(hd|tl|reverse|concat|map2?|filter|foldl1?|foldr1?|scan|take(?:while)?|drop(?:while)?|zip[2-6]?|transpose|iterate|repeat|rep|postfix|member|index|mkset|sort|merge|last|init|sum|product|max2?|min2?|and|or|abs|gcd|neg|subtract|lcm|even|odd|integer|entier|sqrt|exp|log(?:10)?|sin|cos|tan|arctan|pi|hugenum|tinynum|code|decode|digit|letter|spaces|lay|layn|lines|[clr]justify|numval|shownum|showfloat|showscaled|show|id|const|converse|until|limit|seq|force|undef|error|read|filemode|getenv|system|fst|snd)\\b"
+      "patterns": [
+        {
+          "name": "support.function.prelude.miranda",
+          "match": "#(?=\\s|$|\\[|\\(|\")"
+        },
+        {
+          "name": "support.function.prelude.miranda",
+          "match": "\\b(hd|tl|reverse|concat|map2?|filter|foldl1?|foldr1?|scan|take(?:while)?|drop(?:while)?|zip[2-6]?|transpose|iterate|repeat|rep|postfix|member|index|mkset|sort|merge|last|init|sum|product|max2?|min2?|and|or|abs|gcd|neg|subtract|lcm|even|odd|integer|entier|sqrt|exp|log(?:10)?|sin|cos|tan|arctan|pi|e|hugenum|tinynum|code|decode|digit|letter|spaces|lay|layn|lines|[clr]justify|numval|shownum|showfloat|showscaled|show|id|const|converse|until|limit|seq|force|undef|error|read|filemode|getenv|system|fst|snd)\\b"
+        }
+      ]
     },
     "type-name": {
       "name": "entity.name.type.miranda",
