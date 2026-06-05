@@ -14,13 +14,13 @@ Or search **Miranda Prelude** in the Extensions view. Complements other Miranda 
 
 `.m` files are colored automatically. Prelude functions (`map`, `filter`, `sort`, `hd`, `foldl`, etc.) appear in a different color from user-defined code, making it easy to tell standard library calls from your own definitions at a glance.
 
-![Syntax highlighting and hover](images/hover.png)
+![Syntax highlighting and hover](https://raw.githubusercontent.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/main/miranda-preludio/images/hover.png)
 
 ### Autocompletion
 
 When you start typing a Prelude function name, IntelliSense suggests matches with their type signature. Selecting a suggestion shows full documentation with a description and examples.
 
-![Autocompletion with documentation](images/autocompletado.png)
+![Autocompletion with documentation](https://raw.githubusercontent.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/main/miranda-preludio/images/autocompletado.png)
 
 ### Hover documentation
 
@@ -55,8 +55,8 @@ The extension activates automatically when you open any `.m` file.
 
 ## Example files
 
-- [`example.en.m`](example.en.m) — sample Miranda code with English comments
-- [`example.es.m`](example.es.m) — same examples with Spanish comments
+- [`example.en.m`](https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/blob/main/miranda-preludio/example.en.m) — sample Miranda code with English comments
+- [`example.es.m`](https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/blob/main/miranda-preludio/example.es.m) — same examples with Spanish comments
 
 ## Requirements
 
@@ -64,6 +64,10 @@ The extension activates automatically when you open any `.m` file.
 - Miranda files with the `.m` extension
 
 ## Release notes
+
+### 0.0.2
+
+Fix Marketplace README image and example file links after making the repository public.
 
 ### 0.0.1
 
@@ -87,13 +91,13 @@ O buscá **Miranda Prelude** en la vista de Extensiones. Complementa otras exten
 
 Los archivos `.m` se colorean automáticamente. Las funciones del Preludio (`map`, `filter`, `sort`, `hd`, `foldl`, etc.) aparecen en un color distinto al del código definido por el usuario, lo que permite distinguir de un vistazo qué pertenece a la librería estándar y qué es propio del programa.
 
-![Resaltado de sintaxis y hover](images/hover.png)
+![Resaltado de sintaxis y hover](https://raw.githubusercontent.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/main/miranda-preludio/images/hover.png)
 
 ### Autocompletado
 
 Al empezar a escribir el nombre de cualquier función del Preludio, IntelliSense sugiere las coincidencias con su firma de tipo. Al seleccionar una sugerencia, se despliega la documentación completa con descripción y ejemplos.
 
-![Autocompletado con documentación](images/autocompletado.png)
+![Autocompletado con documentación](https://raw.githubusercontent.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/main/miranda-preludio/images/autocompletado.png)
 
 ### Hover con documentación
 
@@ -128,8 +132,8 @@ La extensión se activa automáticamente al abrir cualquier archivo con extensi�
 
 ## Archivos de ejemplo
 
-- [`example.en.m`](example.en.m) — código Miranda de prueba con comentarios en inglés
-- [`example.es.m`](example.es.m) — los mismos ejemplos con comentarios en español
+- [`example.en.m`](https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/blob/main/miranda-preludio/example.en.m) — código Miranda de prueba con comentarios en inglés
+- [`example.es.m`](https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/blob/main/miranda-preludio/example.es.m) — los mismos ejemplos con comentarios en español
 
 ## Requisitos
 
@@ -137,6 +141,10 @@ La extensión se activa automáticamente al abrir cualquier archivo con extensi�
 - Archivos Miranda con extensión `.m`
 
 ## Notas de versión
+
+### 0.0.2
+
+Corrección de links de imágenes y archivos de ejemplo en el README del Marketplace tras hacer público el repositorio.
 
 ### 0.0.1
 

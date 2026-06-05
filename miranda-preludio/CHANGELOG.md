@@ -6,6 +6,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-06-05
+
+### Added
+
+- Extension icon for the VS Code Marketplace listing
+
+### Fixed
+
+- Marketplace README image and example file links (public repository URLs)
+
 ## [0.0.1] - 2026-06-05
 
 ### Added

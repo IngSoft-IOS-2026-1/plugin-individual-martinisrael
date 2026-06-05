@@ -2,12 +2,14 @@
   "name": "miranda-preludio",
   "displayName": "Miranda Prelude",
   "description": "%extension.description%",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "martinisrael",
   "license": "MIT",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael"
+    "url": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael",
+    "directory": "miranda-preludio"
   },
   "bugs": {
     "url": "https://github.com/IngSoft-IOS-2026-1/plugin-individual-martinisrael/issues"
