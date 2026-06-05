@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-
-export type DocLocale = 'en' | 'es';
+import type { DocLocale } from './prelude.cache';
 
 export function getDocumentationLocale(): DocLocale {
     const override = vscode.workspace
