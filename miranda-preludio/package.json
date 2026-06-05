@@ -2,7 +2,7 @@
   "name": "miranda-preludio",
   "displayName": "Miranda Prelude",
   "description": "%extension.description%",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "martinisrael",
   "license": "MIT",
   "icon": "images/icon.png",

@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-06-05
+
+### Changed
+
+- README wording: removed references to other Miranda extensions
+
 ## [0.0.2] - 2026-06-05
 
 ### Added

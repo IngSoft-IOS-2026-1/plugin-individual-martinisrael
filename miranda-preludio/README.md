@@ -6,7 +6,7 @@ VS Code extension that improves the experience of writing **Miranda** code, with
 
 [**Install from the VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio)
 
-Or search **Miranda Prelude** in the Extensions view. Complements other Miranda extensions (e.g. Miranda LSP) with bilingual Prelude hover docs, highlighting, and autocompletion.
+Or search **Miranda Prelude** in the Extensions view for bilingual Prelude hover docs, highlighting, and autocompletion.
 
 ## Features
 
@@ -65,6 +65,10 @@ The extension activates automatically when you open any `.m` file.
 
 ## Release notes
 
+### 0.0.3
+
+README wording: removed references to other Miranda extensions.
+
 ### 0.0.2
 
 Fix Marketplace README image and example file links after making the repository public.
@@ -83,7 +87,7 @@ Extensión de VS Code que mejora la experiencia al escribir código en **Miranda
 
 [**Instalá desde el VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio)
 
-O buscá **Miranda Prelude** en la vista de Extensiones. Complementa otras extensiones Miranda (p. ej. Miranda LSP) con documentación bilingüe del Preludio, resaltado y autocompletado.
+O buscá **Miranda Prelude** en la vista de Extensiones para documentación bilingüe del Preludio, resaltado y autocompletado.
 
 ## Funcionalidades
 
@@ -141,6 +145,10 @@ La extensión se activa automáticamente al abrir cualquier archivo con extensi�
 - Archivos Miranda con extensión `.m`
 
 ## Notas de versión
+
+### 0.0.3
+
+Redacción del README: se quitaron referencias a otras extensiones Miranda.
 
 ### 0.0.2
 

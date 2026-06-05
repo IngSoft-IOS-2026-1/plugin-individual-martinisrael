@@ -11,7 +11,7 @@ The extension lives in [`miranda-preludio/`](miranda-preludio/). See the [extens
 
 [Install from the VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio) — search **Miranda Prelude** in VS Code Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`).
 
-Complements other Miranda extensions from the ISC course (e.g. Miranda LSP). Focuses on bilingual Prelude documentation, syntax highlighting, autocompletion, and hover.
+Provides bilingual Prelude documentation, syntax highlighting, autocompletion, and hover.
 
 ## Documentation
 
@@ -39,7 +39,7 @@ La extensión está en [`miranda-preludio/`](miranda-preludio/). Consultá el [R
 
 [Instalá desde el VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=martinisrael.miranda-preludio) — buscá **Miranda Prelude** en Extensiones de VS Code (`Ctrl+Shift+X` / `Cmd+Shift+X`).
 
-Complementa otras extensiones Miranda del curso ISC (p. ej. Miranda LSP). Se enfoca en documentación bilingüe del Preludio, resaltado de sintaxis, autocompletado y hover.
+Ofrece documentación bilingüe del Preludio, resaltado de sintaxis, autocompletado y hover.
 
 ## Documentación
 
