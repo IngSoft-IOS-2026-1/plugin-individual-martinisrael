@@ -1,11 +1,11 @@
 || ============================================================
-|| ejemplo.m — archivo para probar el plugin miranda-preludio
+|| example.es.m — archivo para probar la extensión miranda-preludio
 || ============================================================
 ||
 || Cómo usar este archivo:
-||   1. Abrí este archivo en VS Code con el plugin activo (F5 desde el proyecto)
+||   1. Abrí este archivo en VS Code con la extensión activa (F5 desde el proyecto)
 ||   2. Observá el resaltado de colores
-||   3. Escribí el nombre de una función del Preludio y fijate el autocompletado
+||   3. Escribí el nombre de una función del Preludio y probá el autocompletado
 ||   4. Posicioná el cursor sobre cualquier nombre de función para ver el hover
 || ============================================================
 

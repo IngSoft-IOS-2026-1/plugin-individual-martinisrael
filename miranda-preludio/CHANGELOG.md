@@ -6,4 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+## [0.0.1] - 2026-06-05
+
+### Added
+
+- Syntax highlighting for Miranda `.m` files with distinct Prelude function colors
+- Autocompletion for 95+ standard Prelude functions with type signatures
+- Hover documentation with descriptions and usage examples
+- Bilingual documentation support (English primary, Spanish via VS Code UI locale or `miranda-preludio.documentationLanguage` setting)
+- Example files: `example.en.m` and `example.es.m`
