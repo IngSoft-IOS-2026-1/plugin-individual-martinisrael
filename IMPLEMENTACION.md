@@ -1,3 +1,5 @@
+> **Language / Idioma:** [English](IMPLEMENTATION.md) · [Español](IMPLEMENTACION.md)
+
 # Plan de implementación — miranda-preludio
 
 Plugin de VS Code que mejora la experiencia al escribir código en Miranda, enfocándose en las funciones del Preludio estándar.
@@ -6,6 +8,7 @@ Plugin de VS Code que mejora la experiencia al escribir código en Miranda, enfo
 - Resaltado de funciones del Preludio en un color distinto al resto del código
 - Autocompletado al comenzar a escribir el nombre de una función
 - Hover que muestra la firma, descripción y ejemplo de uso
+- Documentación bilingüe (inglés principal, soporte en español)
 
 ---
 
@@ -29,7 +32,7 @@ Se creó `src/prelude.ts` con la interfaz `PreludeEntry` y el arreglo `prelude` 
 **Cada entrada incluye:**
 - `name` — nombre de la función
 - `signature` — tipo en notación Miranda
-- `description` — explicación en español
+- `description` — explicación (inicialmente solo en español)
 - `category` — agrupación temática
 - `examples` — ejemplos de uso (opcional)
 
@@ -43,7 +46,7 @@ Registrar Miranda como lenguaje reconocido por VS Code, de modo que los archivos
 
 **Archivos modificados/creados:**
 - `package.json` — agregar `contributes.languages` y `contributes.grammars`
-- `miranda-preludio/language-configuration.json` — comentarios, brackets, auto-cierre
+- `language-configuration.json` — comentarios, brackets, auto-cierre
 
 ---
 
@@ -86,7 +89,7 @@ Registrar un proveedor de autocompletado para el lenguaje Miranda que sugiere fu
 
 Registrar un proveedor de hover que, al posicionar el cursor sobre el nombre de una función del Preludio, despliega un tooltip con:
 - Firma tipada en bloque de código Miranda
-- Descripción en español
+- Descripción
 - Ejemplos de uso
 
 **Archivos modificados:**
@@ -94,13 +97,37 @@ Registrar un proveedor de hover que, al posicionar el cursor sobre el nombre de 
 
 ---
 
+## Paso 7 — Internacionalización (i18n) ✅
+
+Agregar soporte bilingüe con inglés como idioma principal y español como secundario.
+
+**Archivos creados:**
+- `src/locale.ts` — detección de locale, strings de UI, mapa de categorías
+- `src/prelude.base.ts` — metadatos compartidos (name, signature, examples, categoryKey)
+- `src/prelude.en.ts` — descripciones en inglés (95 funciones)
+- `src/prelude.es.ts` — descripciones en español
+- `package.nls.json` — strings del manifiesto en inglés
+- `package.nls.es.json` — strings del manifiesto en español
+
+**Archivos modificados:**
+- `src/prelude.ts` — merge de base + textos por locale, caché por idioma
+- `src/extension.ts` — locale dinámico en `buildDoc()`, invalidación de caché al cambiar config
+- `package.json` — `displayName: "Miranda Prelude"`, setting `documentationLanguage`, eliminado comando Hello World residual
+
+**Selección de idioma:**
+- `auto` (default): sigue el idioma de la UI de VS Code (`es-*` → español, resto → inglés)
+- `en` / `es`: forzar un idioma específico
+
+---
+
 ## Resultado final
 
-Con los seis pasos completados, la extensión provee:
+Con los siete pasos completados, la extensión provee:
 
 1. **Resaltado** — los nombres de funciones del Preludio aparecen en el color de `support.function` del tema activo (generalmente azul/cian), diferenciándose de las funciones definidas por el usuario.
 2. **Autocompletado** — IntelliSense sugiere las funciones al escribir, con firma y documentación integradas.
 3. **Hover** — tooltip con firma, descripción y ejemplos al pasar el mouse sobre cualquier función del Preludio.
+4. **Documentación bilingüe** — hover y autocompletado en inglés o español según locale o setting.
 
 ---
 
@@ -114,11 +141,11 @@ Con los seis pasos completados, la extensión provee:
 
 ### 2. Abrir el archivo de ejemplo
 
-En la ventana Extension Development Host, abrí el archivo `ejemplo.m` que se encuentra en la raíz del proyecto. Este archivo contiene código Miranda que ejercita todas las funcionalidades del plugin.
+En la ventana Extension Development Host, abrí [`miranda-preludio/example.en.m`](miranda-preludio/example.en.m) o [`miranda-preludio/example.es.m`](miranda-preludio/example.es.m). Estos archivos contienen código Miranda que ejercita todas las funcionalidades del plugin.
 
 ### 3. Verificar el resaltado de sintaxis
 
-Al abrir `ejemplo.m`, deberías ver:
+Al abrir un archivo de ejemplo, deberías ver:
 
 | Color | Qué representa |
 |---|---|
@@ -143,11 +170,13 @@ Si IntelliSense no aparece solo, presioná `Ctrl+Space` (`Cmd+Space` en Mac) par
 
 ### 5. Verificar el hover
 
-1. En cualquier archivo `.m`, posicioná el cursor sobre el nombre de una función del Preludio (por ejemplo, sobre `filter` en `ejemplo.m`)
+1. En cualquier archivo `.m`, posicioná el cursor sobre el nombre de una función del Preludio (por ejemplo, sobre `filter` en `example.en.m`)
 2. Después de un momento aparece un tooltip con:
    - La firma de tipo en un bloque de código
-   - La descripción en español
+   - La descripción en el idioma activo (inglés por defecto)
    - Ejemplos de uso
+
+Para probar español: configurá `"miranda-preludio.documentationLanguage": "es"` en settings, o ejecutá VS Code con `"locale": "es"`.
 
 ### 6. Verificar que el auto-cierre de brackets funciona
 

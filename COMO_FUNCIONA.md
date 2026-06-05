@@ -1,3 +1,5 @@
+> **Language / Idioma:** [English](HOW_IT_WORKS.md) · [Español](COMO_FUNCIONA.md)
+
 # Cómo funciona el plugin miranda-preludio
 
 Este documento explica de forma accesible qué hace el plugin, qué herramientas se usaron y cómo cada parte contribuye al resultado final. No es necesario conocer Miranda ni haber desarrollado extensiones de VS Code antes.
@@ -6,7 +8,7 @@ Este documento explica de forma accesible qué hace el plugin, qué herramientas
 
 ## El problema que resuelve
 
-Miranda es un lenguaje de programación funcional que tiene una librería estándar llamada el **Preludio**. Esa librería incluye más de 80 funciones incorporadas (como `map`, `filter`, `sort`, `hd`, etc.) que el programador puede usar directamente.
+Miranda es un lenguaje de programación funcional que tiene una librería estándar llamada el **Preludio**. Esa librería incluye más de 95 funciones incorporadas (como `map`, `filter`, `sort`, `hd`, etc.) que el programador puede usar directamente.
 
 El problema es que VS Code no conoce Miranda: no sabe que existe, no entiende su sintaxis y no puede distinguir si una palabra es una función de la librería estándar o una función que escribió el programador.
 
@@ -19,17 +21,36 @@ El plugin soluciona eso en tres frentes:
 
 ## Las piezas del plugin
 
-### `src/prelude.ts` — el catálogo de funciones
+### `src/prelude.*.ts` — el catálogo de funciones
 
-Este archivo es la base de todo. Contiene una lista con cada función del Preludio de Miranda, y para cada una guarda:
+Este es la base de todo. El catálogo está dividido en varios archivos:
+
+| Archivo | Contenido |
+|---|---|
+| `prelude.base.ts` | Metadatos compartidos: nombre, firma, ejemplos, clave de categoría |
+| `prelude.en.ts` | Descripciones en inglés (Record indexado por nombre) |
+| `prelude.es.ts` | Descripciones en español (misma estructura) |
+| `prelude.ts` | Une base + textos por locale y exporta `getPrelude()`, `lookupEntry()` |
+
+Para cada función del Preludio guarda:
 
 - **nombre** — cómo se llama la función (ej. `filter`)
-- **firma de tipo** — qué recibe y qué devuelve, en la notación propia de Miranda (ej. `filter :: (* -> bool) -> [*] -> [*]`)
-- **descripción** — qué hace, escrita en español
-- **categoría** — Listas, Aritmética, Caracteres, etc.
+- **firma de tipo** — qué recibe y qué devuelve, en notación Miranda (ej. `filter :: (* -> bool) -> [*] -> [*]`)
+- **descripción** — qué hace, en inglés o español según el locale activo
+- **categoryKey** — clave interna (`lists`, `arithmetic`, `characters`, etc.)
 - **ejemplos** — casos concretos de uso con resultado
 
-Este catálogo lo usan las dos partes siguientes del plugin.
+El autocompletado y el hover usan este catálogo.
+
+### `src/locale.ts` — detección de idioma
+
+Determina qué idioma mostrar en la documentación:
+
+- Setting `miranda-preludio.documentationLanguage`: `auto`, `en` o `es`
+- En modo `auto`, sigue `vscode.env.language` (`es-*` → español, resto → inglés)
+- Inglés es el fallback por defecto
+
+También define strings de UI como la etiqueta "Ejemplos" en los tooltips.
 
 ---
 
@@ -67,6 +88,9 @@ Es el archivo de configuración central. Le dice a VS Code:
 - **Qué archivos abre este plugin:** los archivos con extensión `.m` son Miranda
 - **Qué gramática usar:** apunta al archivo `miranda.tmLanguage.json` para el resaltado
 - **Qué configuración de lenguaje usar:** apunta a `language-configuration.json`
+- **Setting de idioma de documentación:** `miranda-preludio.documentationLanguage`
+
+Los metadatos localizados (description, labels de settings) están en `package.nls.json` (inglés) y `package.nls.es.json` (español).
 
 Sin este archivo, VS Code no sabría que existe el lenguaje Miranda ni cuándo activar el plugin.
 
@@ -78,7 +102,7 @@ Este es el código TypeScript que VS Code ejecuta cuando el plugin se activa. Re
 
 #### Proveedor de autocompletado (`CompletionItemProvider`)
 
-Cuando el usuario está escribiendo en un archivo `.m` y activa IntelliSense (automáticamente o con `Ctrl+Space`), este proveedor devuelve la lista completa de funciones del Preludio. Para cada función construye una sugerencia con:
+Cuando el usuario está escribiendo en un archivo `.m` y activa IntelliSense (automáticamente o con `Ctrl+Space`), este proveedor devuelve la lista completa de funciones del Preludio para el locale activo. Para cada función construye una sugerencia con:
 - El nombre de la función como texto a insertar
 - La firma de tipo como descripción corta (aparece a la derecha del nombre en la lista)
 - La descripción y los ejemplos como documentación larga (aparece en el panel lateral)
@@ -87,9 +111,11 @@ Cuando el usuario está escribiendo en un archivo `.m` y activa IntelliSense (au
 
 Cuando el usuario deja el cursor quieto sobre una palabra en un archivo `.m`, VS Code consulta a este proveedor si tiene algo que mostrar. El proveedor:
 1. Lee la palabra bajo el cursor
-2. La busca en el catálogo del Preludio
+2. La busca en el catálogo del Preludio (locale activo)
 3. Si la encuentra, arma un tooltip con la firma, la descripción y los ejemplos
 4. Si no la encuentra (porque es una función propia del usuario), no muestra nada
+
+Al cambiar `documentationLanguage`, se invalida la caché del preludio para que el próximo hover o autocompletado use el idioma nuevo.
 
 ---
 
@@ -101,10 +127,10 @@ archivo .m abierto en VS Code
         ├─► TextMate grammar ──► resaltado de colores en tiempo real
         │
         ├─► CompletionItemProvider ──► sugerencias mientras se escribe
-        │         └── consulta prelude.ts
+        │         └── consulta getPrelude() (según locale)
         │
         └─► HoverProvider ──► tooltip al posicionar el cursor
-                  └── consulta prelude.ts
+                  └── consulta lookupEntry() (según locale)
 ```
 
 El resaltado funciona sin que el plugin esté "corriendo": VS Code lo aplica directamente desde el archivo JSON de gramática. El autocompletado y el hover sí requieren que el código TypeScript esté activo, pero VS Code lo activa automáticamente cuando se abre cualquier archivo `.m`.
@@ -120,3 +146,4 @@ El resaltado funciona sin que el plugin esté "corriendo": VS Code lo aplica dir
 | **TextMate Grammars** | Sistema estándar de resaltado de sintaxis que usan VS Code, Sublime Text y otros editores. Se definen en JSON con expresiones regulares. |
 | **Yeoman (`yo code`)** | Generador que arma el esqueleto inicial del proyecto con todos los archivos de configuración necesarios. |
 | **Node.js / npm** | Entorno de ejecución y gestor de paquetes. El plugin se compila con el compilador de TypeScript (`tsc`) incluido como dependencia. |
+| **package.nls.json** | Localización de metadatos del manifiesto de la extensión (description, labels de settings). |
