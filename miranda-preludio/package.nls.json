@@ -1,0 +1,7 @@
+{
+  "extension.description": "Miranda language support: syntax highlighting, autocompletion, and standard Prelude documentation.",
+  "configuration.documentationLanguage.description": "Language for Prelude hover and autocompletion docs. 'auto' follows the VS Code UI language.",
+  "configuration.documentationLanguage.auto": "Auto (follow VS Code UI language)",
+  "configuration.documentationLanguage.en": "English",
+  "configuration.documentationLanguage.es": "Spanish"
+}

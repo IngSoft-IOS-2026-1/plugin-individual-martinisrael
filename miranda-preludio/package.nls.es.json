@@ -1,0 +1,7 @@
+{
+  "extension.description": "Soporte para el lenguaje Miranda: resaltado de sintaxis, autocompletado y documentación del Preludio estándar.",
+  "configuration.documentationLanguage.description": "Idioma de la documentación del Preludio en hover y autocompletado. 'auto' sigue el idioma de la interfaz de VS Code.",
+  "configuration.documentationLanguage.auto": "Automático (según idioma de VS Code)",
+  "configuration.documentationLanguage.en": "Inglés",
+  "configuration.documentationLanguage.es": "Español"
+}

@@ -1,7 +1,7 @@
 {
   "name": "miranda-preludio",
-  "displayName": "miranda-preludio",
-  "description": "Plugin de soporte para el lenguaje Miranda: resaltado, autocompletado y documentación del Preludio estándar.",
+  "displayName": "Miranda Prelude",
+  "description": "%extension.description%",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.118.0"
@@ -27,12 +27,22 @@
         "path": "./syntaxes/miranda.tmLanguage.json"
       }
     ],
-    "commands": [
-      {
-        "command": "miranda-preludio.helloWorld",
-        "title": "Hello World"
+    "configuration": {
+      "title": "Miranda Prelude",
+      "properties": {
+        "miranda-preludio.documentationLanguage": {
+          "type": "string",
+          "enum": ["auto", "en", "es"],
+          "enumDescriptions": [
+            "%configuration.documentationLanguage.auto%",
+            "%configuration.documentationLanguage.en%",
+            "%configuration.documentationLanguage.es%"
+          ],
+          "default": "auto",
+          "description": "%configuration.documentationLanguage.description%"
+        }
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
