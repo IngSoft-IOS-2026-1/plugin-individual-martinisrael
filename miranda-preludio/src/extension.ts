@@ -37,9 +37,11 @@ function registerHover(): vscode.Disposable {
         { language: 'miranda' },
         {
             provideHover(document, position) {
-                const word = document.getText(
-                    document.getWordRangeAtPosition(position, /[a-zA-Z][a-zA-Z0-9_']*/)
-                );
+                const range = document.getWordRangeAtPosition(position, /[a-zA-Z][a-zA-Z0-9_']*/);
+                if (!range) {
+                    return;
+                }
+                const word = document.getText(range);
                 const entry = lookupEntry(word);
                 if (!entry) {
                     return;
