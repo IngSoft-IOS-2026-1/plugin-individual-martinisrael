@@ -6,13 +6,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-### Fixed
-
-- Hover no longer triggers for Prelude names inside `||` comments or string literals
+## [1.0.1] - 2026-06-13
 
 ### Added
 
 - Prelude category label shown at the top of hover and completion documentation
+
+### Fixed
+
+- Hover no longer triggers for Prelude names inside `||` comments or string literals
 
 ## [0.0.3] - 2026-06-05
 

@@ -65,6 +65,10 @@ The extension activates automatically when you open any `.m` file.
 
 ## Release notes
 
+### 1.0.1
+
+Hover improvements: category label (lists, arithmetic, etc.) at the top of tooltips, and no false-positive hovers inside comments or strings.
+
 ### 0.0.3
 
 README wording: removed references to other Miranda extensions.
@@ -145,6 +149,10 @@ La extensión se activa automáticamente al abrir cualquier archivo con extensi�
 - Archivos Miranda con extensión `.m`
 
 ## Notas de versión
+
+### 1.0.1
+
+Mejoras en hover: etiqueta de categoría (listas, aritmética, etc.) arriba del tooltip, y sin falsos positivos en comentarios o strings.
 
 ### 0.0.3
 
