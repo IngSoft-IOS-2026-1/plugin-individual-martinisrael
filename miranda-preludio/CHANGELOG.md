@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Fixed
+
+- Hover no longer triggers for Prelude names inside `||` comments or string literals
+
 ## [0.0.3] - 2026-06-05
 
 ### Changed

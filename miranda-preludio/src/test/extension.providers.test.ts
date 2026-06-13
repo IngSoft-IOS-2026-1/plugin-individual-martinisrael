@@ -99,4 +99,34 @@ describe('Extension providers', () => {
 
         assert.equal(hover, undefined);
     });
+
+    test('provideHover returns undefined inside comments', () => {
+        const document = createMirandaDocument('|| map filter sort');
+        const position = { line: 0, character: 5 } as vscode.Position;
+
+        const hover = provideHover(
+            vscode,
+            document,
+            position,
+            name => prelude.find(entry => entry.name === name),
+            'en'
+        );
+
+        assert.equal(hover, undefined);
+    });
+
+    test('provideHover returns undefined inside strings', () => {
+        const document = createMirandaDocument('x = "map"');
+        const position = { line: 0, character: 6 } as vscode.Position;
+
+        const hover = provideHover(
+            vscode,
+            document,
+            position,
+            name => prelude.find(entry => entry.name === name),
+            'en'
+        );
+
+        assert.equal(hover, undefined);
+    });
 });

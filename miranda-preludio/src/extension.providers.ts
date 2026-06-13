@@ -1,6 +1,7 @@
 import type * as vscode from 'vscode';
 import type { PreludeEntry } from './prelude';
 import type { DocLocale } from './prelude.cache';
+import { isHoverableCodePosition } from './miranda-context';
 import { uiStrings } from './ui-strings';
 
 export interface ExtensionVscodeApi {
@@ -45,6 +46,11 @@ export function provideHover(
     lookup: (name: string) => PreludeEntry | undefined,
     locale: DocLocale,
 ): vscode.Hover | undefined {
+    const line = document.lineAt(position.line).text;
+    if (!isHoverableCodePosition(line, position.character)) {
+        return undefined;
+    }
+
     const range = document.getWordRangeAtPosition(position, /[a-zA-Z][a-zA-Z0-9_']*/);
     if (!range) {
         return undefined;
