@@ -17,6 +17,7 @@ export function buildDoc(
     locale: DocLocale,
 ): vscode.MarkdownString {
     const md = new api.MarkdownString();
+    md.appendMarkdown(`**${uiStrings[locale].categoryLabel(entry.categoryKey)}**\n\n`);
     md.appendCodeblock(entry.signature, 'miranda');
     md.appendMarkdown(`\n${entry.description}`);
     if (entry.examples && entry.examples.length > 0) {

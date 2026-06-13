@@ -16,22 +16,24 @@ describe('Extension providers', () => {
     const mapEntry = prelude.find(entry => entry.name === 'map');
     assert.ok(mapEntry);
 
-    test('buildDoc includes signature, description, and examples label', () => {
+    test('buildDoc includes category, signature, description, and examples label', () => {
         const doc = buildDoc(vscode, mapEntry!, 'en');
         const value = getMarkdownValue(doc);
 
+        assert.match(value, /\*\*Lists\*\*/);
         assert.match(value, /map :: \(\* -> \*\*\) -> \[\*\] -> \[\*\*\]/);
         assert.match(value, /Applies a function to each list element/);
         assert.match(value, /\*\*Examples:\*\*/);
     });
 
-    test('buildDoc uses Spanish examples label when locale is es', () => {
+    test('buildDoc uses Spanish category and examples labels when locale is es', () => {
         const esMap = mergePrelude('es').find(entry => entry.name === 'map');
         assert.ok(esMap);
 
         const doc = buildDoc(vscode, esMap!, 'es');
         const value = getMarkdownValue(doc);
 
+        assert.match(value, /\*\*Listas\*\*/);
         assert.match(value, /\*\*Ejemplos:\*\*/);
         assert.match(value, /Aplica una función a cada elemento/);
     });
